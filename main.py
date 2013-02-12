@@ -56,27 +56,9 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
             while True:
                 mpd_status = self.client.status()
 
-                # print '############', mpd_status
-                # print '############', self.mpd_status
-                # if self.mpd_status == mpd_status:
-                #     continue
-
-                # print '$$$$$$$$$$$$'
-                # self.broadcast_event('mpd_status', mpd_status)
                 if 'songid' in self.mpd_status and 'songid' in mpd_status:
                     if self.mpd_status['songid'] != mpd_status['songid']:
                         self.broadcast_event('on_song_changed', mpd_status['songid'])
-
-                if 'state' in self.mpd_status and 'state' in mpd_status:
-                    if self.mpd_status['state'] != mpd_status['state']:
-                        self.get_emit_state_change(
-                            mpd_status['state'],
-                            mpd_status['songid'],
-                        )
-
-                if 'volume' in self.mpd_status and 'volume' in mpd_status:
-                    if self.mpd_status['volume'] != mpd_status['volume']:
-                        self.broadcast_event('on_volume_changed', mpd_status['volume'])
 
                 self.mpd_status = mpd_status
                 gevent.sleep(1)
