@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Radio RPi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    <script src="/static/js/music.js"></script>
+    <script src="/static/js/socketio/socket.io.min.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+<script id="songTemplate" type="text/x-jsrender">
+    <li>
+        <a data-url="{0}" id=${id}>${artist} - ${title}</a>
+    </li>
+</script>
+<div id='music_page' data-role="page" data-title="Radio RPi">
+    <div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal play_controlls">
+        <div class="ui-controlgroup-controls">
+            <a href="#" id="prev" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-corner-left ui-btn-up-c">
+                <span class="ui-btn-inner ui-corner-left">
+                    <span class="ui-btn-text">Prev</span>
+                    <span class="ui-icon ui-icon-prev ui-icon-shadow">&nbsp;</span>
+                </span>
+            </a>
+            <a href="#" id="stop" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-btn-up-c">
+                <span class="ui-btn-inner">
+                    <span class="ui-btn-text">Stop</span>
+                    <span class="ui-icon ui-icon-stop ui-icon-shadow">&nbsp;</span>
+                </span>
+            </a>
+            <a href="#" id="play" data-role="button" data-icon="arrow-d" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-btn-up-c">
+                <span class="ui-btn-inner">
+                    <span class="ui-btn-text">Play</span>
+                    <span class="ui-icon ui-icon-play ui-icon-shadow" id="play_icon">&nbsp;</span>
+                </span>
+            </a>
+            <a href="#" id="next" data-role="button" data-icon="gear" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-corner-right ui-controlgroup-last ui-btn-up-c">
+                <span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
+                    <span class="ui-btn-text">Next</span>
+                    <span class="ui-icon ui-icon-next ui-icon-shadow">&nbsp;</span>
+                </span>
+            </a>
+        </div>
+    </div>
+    <!-- /header -->
+    <div data-role="content">
+        <ul data-role="listview" data-filter="true" data-theme="c" data-inset="true" id="stations">
+        </ul>
+    </div>
+    <!-- /content -->
+    <div data-role="footer" class="ui-bar" data-position="fixed" data-theme="c">
+        <form>
+            <input type="range" name="slider-fill" id="volume" value="50" min="0" max="100" data-highlight="true"/>
+        </form>
+    </div>
+    <!-- /footer -->
+</div>
+<!-- /page -->
+</body>
+</html>

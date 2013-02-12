@@ -1,0 +1,31 @@
+
+.ui-icon-play {
+    background-image: url(/static/img/play.png);
+    background-position: 6px 50%;
+}
+
+.ui-icon-stop {
+    background-image: url(/static/img/stop.png);
+    background-position: 4px 50%;
+}
+
+.ui-icon-pause {
+    background-image: url(/static/img/pause.png);
+    background-position: 5px 50%;
+}
+
+.ui-icon-prev {
+    background-image: url(/static/img/first.png);
+    background-position: 4px 50%;
+}
+
+.ui-icon-next {
+    background-image: url(/static/img/last.png);
+    background-position: 4px 50%;
+}
+
+.play_controlls div {
+    width: 238px;
+    margin: 0 auto;
+    display: block !important;
+}
