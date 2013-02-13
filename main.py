@@ -2,17 +2,14 @@
 
 import mpd
 import os
-import re
-import unicodedata
 import gevent
 
 from socketio import socketio_manage
 from socketio.namespace import BaseNamespace
 from socketio.mixins import RoomsMixin, BroadcastMixin
-from werkzeug.exceptions import NotFound
 from gevent import monkey
 
-from flask import Flask, Response, request, render_template, url_for, redirect, jsonify
+from flask import Flask, Response, request, render_template
 
 monkey.patch_all()
 
