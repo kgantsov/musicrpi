@@ -29,3 +29,8 @@
     margin: 0 auto;
     display: block !important;
 }
+
+.play_controlls .ui-btn-inner {
+    height: 20px !important;
+    padding: .6em 20px .6em 20px !important;
+}

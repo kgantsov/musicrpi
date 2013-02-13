@@ -17,33 +17,36 @@
         <a data-url="{0}" id=${id}>${artist} - ${title}</a>
     </li>
 </script>
+
 <div id='music_page' data-role="page" data-title="Radio RPi">
-    <div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal play_controlls">
-        <div class="ui-controlgroup-controls">
-            <a href="#" id="prev" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-corner-left ui-btn-up-c">
-                <span class="ui-btn-inner ui-corner-left">
-                    <span class="ui-btn-text">Prev</span>
-                    <span class="ui-icon ui-icon-prev ui-icon-shadow">&nbsp;</span>
-                </span>
-            </a>
-            <a href="#" id="stop" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-btn-up-c">
-                <span class="ui-btn-inner">
-                    <span class="ui-btn-text">Stop</span>
-                    <span class="ui-icon ui-icon-stop ui-icon-shadow">&nbsp;</span>
-                </span>
-            </a>
-            <a href="#" id="play" data-role="button" data-icon="arrow-d" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-btn-up-c">
-                <span class="ui-btn-inner">
-                    <span class="ui-btn-text">Play</span>
-                    <span class="ui-icon ui-icon-play ui-icon-shadow" id="play_icon">&nbsp;</span>
-                </span>
-            </a>
-            <a href="#" id="next" data-role="button" data-icon="gear" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-corner-right ui-controlgroup-last ui-btn-up-c">
-                <span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
-                    <span class="ui-btn-text">Next</span>
-                    <span class="ui-icon ui-icon-next ui-icon-shadow">&nbsp;</span>
-                </span>
-            </a>
+    <div data-role="header" data-theme="c" data-position="fixed" class="ui-header ui-bar-c" role="banner">
+        <div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal play_controlls">
+            <div class="ui-controlgroup-controls">
+                <a href="#" id="prev" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-corner-left ui-btn-up-c">
+                    <span class="ui-btn-inner ui-corner-left">
+                        <span class="ui-btn-text">Prev</span>
+                        <span class="ui-icon ui-icon-prev ui-icon-shadow">&nbsp;</span>
+                    </span>
+                </a>
+                <a href="#" id="stop" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-btn-up-c">
+                    <span class="ui-btn-inner">
+                        <span class="ui-btn-text">Stop</span>
+                        <span class="ui-icon ui-icon-stop ui-icon-shadow">&nbsp;</span>
+                    </span>
+                </a>
+                <a href="#" id="play" data-role="button" data-icon="arrow-d" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-btn-up-c">
+                    <span class="ui-btn-inner">
+                        <span class="ui-btn-text">Play</span>
+                        <span class="ui-icon ui-icon-play ui-icon-shadow" id="play_icon">&nbsp;</span>
+                    </span>
+                </a>
+                <a href="#" id="next" data-role="button" data-icon="gear" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-corner-right ui-controlgroup-last ui-btn-up-c">
+                    <span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
+                        <span class="ui-btn-text">Next</span>
+                        <span class="ui-icon ui-icon-next ui-icon-shadow">&nbsp;</span>
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
     <!-- /header -->
