@@ -34,7 +34,7 @@ $(function() {
             $('#prev').tap(App.prev);
             $('#next').tap(App.next);
 
-            $('#stations').on('tap', 'li a', function () {
+            $('#music_list').on('tap', 'li a', function () {
                 App.playSong($(this).attr('id'));
             });
 
@@ -52,8 +52,8 @@ $(function() {
                     if (data['status'] == 'ok') {
                         App.playlist = data['playlist'];
                         $( "#songTemplate" ).tmpl(App.playlist)
-                            .appendTo('#stations');
-                        $('#stations').listview("refresh");
+                            .appendTo('#music_list');
+                        $('#music_list').listview("refresh");
                     }
                 }
                 socket.emit('init', function () {
@@ -71,7 +71,7 @@ $(function() {
         },
 
         on_song_changed: function(song_id) {
-            $('#stations').find('a').parent().parent().removeClass('ui-btn-active');
+            $('#music_list').find('a').parent().parent().removeClass('ui-btn-active');
 
             $('#' + song_id).parent().parent().addClass('ui-btn-active');
 
@@ -87,7 +87,7 @@ $(function() {
         },
 
         on_play: function(song_id) {
-            $('#stations').find('a').parent().parent()
+            $('#music_list').find('a').parent().parent()
                 .removeClass('ui-btn-active');
 
             $('#' + song_id).parent().parent()
@@ -180,7 +180,7 @@ $(function() {
 
             if (mpd_status['state'] == 'play') {
                 if (mpd_status['songid'] != App.mpd_status['songid']) {
-                    $('#stations').find('a').parent().parent()
+                    $('#music_list').find('a').parent().parent()
                         .removeClass('ui-btn-active');
 
                     $('#' + mpd_status['songid']).parent().parent()
