@@ -31,6 +31,7 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
 
         self.client = mpd.MPDClient()
         self.client.connect("localhost", 6600)
+        self.client.repeat(1)
         # self.client.clear()
         # self.client.rm('mysongs')
 
@@ -49,27 +50,29 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
 
     def status_update(self):
         def send_status():
-            self.mpd_status = self.client.status()
+            self.status = self.client.status()
             while True:
-                mpd_status = self.client.status()
+                status = self.client.status()
 
-                if 'songid' in self.mpd_status and 'songid' in mpd_status:
-                    if self.mpd_status['songid'] != mpd_status['songid']:
-                        self.broadcast_event('on_song_changed', mpd_status['songid'])
+                if 'songid' in self.status and 'songid' in status:
+                    if self.status['songid'] != status['songid']:
+                        self.broadcast_event('on_song_changed', status['songid'])
 
-                self.mpd_status = mpd_status
+                self.status = status
                 gevent.sleep(1)
 
         self.spawn(send_status)
 
     def on_init(self):
-        mpd_status = self.client.status()
-        self.broadcast_event('on_song_changed', mpd_status['songid'])
+        status = self.client.status()
+        songid = status['songid'] if 'songid' in status else 0
+
+        self.broadcast_event('on_song_changed', songid)
         self.get_emit_state_change(
-            mpd_status['state'],
-            mpd_status['songid'],
+            status['state'],
+            songid,
         )
-        self.broadcast_event('on_volume_changed', mpd_status['volume'])
+        self.broadcast_event('on_volume_changed', status['volume'])
 
     def get_emit_state_change(self, state, songid):
         events = {
@@ -91,11 +94,11 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
     def on_stop(self):
         self.client.stop()
         status = self.client.status()
-        self.broadcast_event('on_stop', status['songid'])
+        songid = status['songid'] if 'songid' in status else 0
+        self.broadcast_event('on_stop', songid)
         return True, status
 
     def on_next(self):
-        self.client.next()
         status = self.client.status()
 
         if status['state'] == 'play':
@@ -103,7 +106,6 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
         return True, status
 
     def on_prev(self):
-        self.client.previous()
         status = self.client.status()
 
         if status['state'] == 'play':
