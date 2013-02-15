@@ -85,10 +85,14 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
 
         self.broadcast_event(events[state], songid)
 
-    def on_play(self, id):
-        self.client.play(id)
+    def on_play(self, id=None):
+        if id:
+            self.client.play(id)
+        else:
+            self.client.play()
+
         status = self.client.status()
-        self.broadcast_event('on_play', id)
+        self.broadcast_event('on_play', status['songid'])
         return True, status
 
     def on_stop(self):
@@ -102,6 +106,7 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
         status = self.client.status()
 
         if status['state'] == 'play':
+            self.client.next()
             self.broadcast_event('on_song_changed', status['songid'])
         return True, status
 
@@ -109,6 +114,7 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
         status = self.client.status()
 
         if status['state'] == 'play':
+            self.client.previous()
             self.broadcast_event('on_song_changed', status['songid'])
         return True, status
 

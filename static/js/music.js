@@ -26,10 +26,7 @@ $(function() {
             socket.on('on_pause', App.on_pause);
             socket.on('on_volume_changed', App.on_volume_changed);
 
-            $('#play').tap(function () {
-                App.play(App.song_id);
-            });
-
+            $('#play').tap(App.play);
             $('#stop').tap(App.stop);
             $('#prev').tap(App.prev);
             $('#next').tap(App.next);
@@ -42,6 +39,9 @@ $(function() {
                 App.setVolume($('#volume').val());
             });
 
+            $(document).bind('keydown', 'Alt+left', App.prev);
+            $(document).bind('keydown', 'Alt+right', App.next);
+            $(document).bind('keydown', 'Shift+space', App.play);
             $.mobile.loading('hide');
         },
 
@@ -115,13 +115,13 @@ $(function() {
             App.volume = volume;
         },
 
-        play: function(id) {
+        play: function() {
             if (App.state == 'play')
             {
                 socket.emit('pause', function (status, data) {
                 });
             } else {
-                socket.emit('play', id, function (status, data) {
+                socket.emit('play', function (status, data) {
                 });
             }
         },
