@@ -125,9 +125,11 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
         return True, status
 
     def on_set_volume(self, volume):
-        self.client.setvol(volume)
+        if 0 <= volume <= 100:
+            self.client.setvol(volume)
+
         status = self.client.status()
-        self.broadcast_event('on_volume_changed', volume)
+        self.broadcast_event('on_volume_changed', status['volume'])
         return True, status
 
     def on_playlist(self):

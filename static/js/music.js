@@ -39,9 +39,11 @@ $(function() {
                 App.setVolume($('#volume').val());
             });
 
-            $(document).bind('keydown', 'Alt+left', App.prev);
-            $(document).bind('keydown', 'Alt+right', App.next);
+            $(document).bind('keydown', 'Shift+left', App.prev);
+            $(document).bind('keydown', 'Shift+right', App.next);
             $(document).bind('keydown', 'Shift+space', App.play);
+            $(document).bind('keydown', 'Shift+up', App.volumeUp);
+            $(document).bind('keydown', 'Shift+down', App.volumeDown);
             $.mobile.loading('hide');
         },
 
@@ -109,6 +111,7 @@ $(function() {
         },
 
         on_volume_changed: function(volume) {
+            volume = parseInt(volume, 10);
             $('#volume').val(volume);
             $('#volume').slider('refresh');
 
@@ -154,6 +157,24 @@ $(function() {
         setVolume: function (volume) {
             socket.emit('set_volume', volume, function (status, data) {
             });
+        },
+
+        volumeUp: function() {
+            var newVolume = App.volume + 5;
+            if (newVolume > 100) {
+                newVolume = 100;
+            }
+
+            App.setVolume(newVolume);
+        },
+
+        volumeDown: function() {
+            var newVolume = App.volume - 5;
+            if (newVolume < 0) {
+                newVolume = 0;
+            }
+
+            App.setVolume(newVolume);
         }
     };
 
