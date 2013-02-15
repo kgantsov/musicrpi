@@ -154,48 +154,6 @@ $(function() {
         setVolume: function (volume) {
             socket.emit('set_volume', volume, function (status, data) {
             });
-        },
-
-        statusApply: function(mpd_status) {
-            if (App.mpd_status === null) {
-                App.mpd_status = mpd_status;
-            }
-
-            if (mpd_status['volume'] != App.mpd_status['volume']) {
-                $('#volume').val(mpd_status['volume']);
-                $('#volume').slider('refresh');
-            }
-
-            if (mpd_status['state'] != App.mpd_status['state']) {
-                if (mpd_status['state'] == 'play') {
-                    $('.ui-icon-play')
-                        .addClass('ui-icon-pause')
-                        .removeClass('ui-icon-play');
-                } else {
-                    $('.ui-icon-pause')
-                        .addClass('ui-icon-play')
-                        .removeClass('ui-icon-pause');
-                }
-            }
-
-            if (mpd_status['state'] == 'play') {
-                if (mpd_status['songid'] != App.mpd_status['songid']) {
-                    $('#music_list').find('a').parent().parent()
-                        .removeClass('ui-btn-active');
-
-                    $('#' + mpd_status['songid']).parent().parent()
-                        .addClass('ui-btn-active');
-                }
-            }
-
-            if (mpd_status['state'] == 'play' ) {
-                if (!$('#' + mpd_status['songid']).parent().parent().hasClass('ui-btn-active')) {
-                    $('#' + mpd_status['songid']).parent().parent()
-                        .addClass('ui-btn-active');
-                }
-            }
-
-            App.mpd_status = mpd_status;
         }
     };
 
