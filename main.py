@@ -31,7 +31,7 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
 
         self.client = mpd.MPDClient()
         self.client.connect("localhost", 6600)
-        self.client.repeat(1)
+        # self.client.repeat(1)
         # self.client.clear()
         # self.client.rm('mysongs')
 
@@ -72,7 +72,10 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
             status['state'],
             songid,
         )
+
         self.broadcast_event('on_volume_changed', status['volume'])
+        self.broadcast_event('on_shuffle', status['random'])
+        self.broadcast_event('on_repeat', status['repeat'])
 
     def get_emit_state_change(self, state, songid):
         events = {
@@ -122,6 +125,18 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
         self.client.pause()
         status = self.client.status()
         self.broadcast_event('on_pause', status['songid'])
+        return True, status
+
+    def on_shuffle(self, shuffle):
+        shuffle = int(shuffle)
+        self.client.random(shuffle)
+        status = self.client.status()
+        return True, status
+
+    def on_repeat(self, repeat):
+        repeat = int(repeat)
+        self.client.repeat(repeat)
+        status = self.client.status()
         return True, status
 
     def on_set_volume(self, volume):

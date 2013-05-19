@@ -3,10 +3,10 @@
 <head>
     <title>Radio RPi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
-    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
-    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    <link rel="stylesheet" href="/static/css/jquery.mobile-1.2.0.min.css"/>
+    <script src="/static/js/jquery-1.8.2.min.js"></script>
+    <script src="/static/js/jquery.tmpl.js"></script>
+    <script src="/static/js/jquery.mobile-1.2.0.min.js"></script>
     <script src="/static/js/jquery.hotkeys.js"></script>
     <script src="/static/js/music.js"></script>
     <script src="/static/js/socketio/socket.io.min.js"></script>
@@ -45,6 +45,18 @@
                     <span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
                         <span class="ui-btn-text">Next</span>
                         <span class="ui-icon ui-icon-next ui-icon-shadow">&nbsp;</span>
+                    </span>
+                </a>
+                <a href="#" id="shuffle" data-role="button" data-icon="gear" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-corner-right ui-controlgroup-last ui-btn-up-c">
+                    <span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
+                        <span class="ui-btn-text">Shuffle</span>
+                        <span class="ui-icon ui-icon-shuffle ui-icon-shadow">&nbsp;</span>
+                    </span>
+                </a>
+                <a href="#" id="repeat" data-role="button" data-icon="gear" data-iconpos="notext" data-theme="c" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="My button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-corner-right ui-controlgroup-last ui-btn-up-c">
+                    <span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
+                        <span class="ui-btn-text">Repeat</span>
+                        <span class="ui-icon ui-icon-repeat ui-icon-shadow">&nbsp;</span>
                     </span>
                 </a>
             </div>

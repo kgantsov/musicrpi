@@ -25,11 +25,15 @@ $(function() {
             socket.on('on_play', App.on_play);
             socket.on('on_pause', App.on_pause);
             socket.on('on_volume_changed', App.on_volume_changed);
+            socket.on('on_shuffle', App.on_shuffle);
+            socket.on('on_repeat', App.on_repeat);
 
             $('#play').tap(App.play);
             $('#stop').tap(App.stop);
             $('#prev').tap(App.prev);
             $('#next').tap(App.next);
+            $('#shuffle').tap(App.shuffle);
+            $('#repeat').tap(App.repeat);
 
             $('#music_list').on('tap', 'li a', function () {
                 App.playSong($(this).attr('id'));
@@ -110,6 +114,18 @@ $(function() {
             App.state = 'pause';
         },
 
+        on_shuffle: function(random) {
+            if (random === '1') {
+                $('#shuffle').addClass('ui-btn-active');
+            }
+        },
+
+        on_repeat: function(repeat) {
+            if (repeat === '1') {
+                $('#repeat').addClass('ui-btn-active');
+            }
+        },
+
         on_volume_changed: function(volume) {
             volume = parseInt(volume, 10);
             $('#volume').val(volume);
@@ -151,6 +167,28 @@ $(function() {
 
         next: function () {
             socket.emit('next', function (status, data) {
+            });
+        },
+
+        shuffle: function () {
+            shuffle = $('#shuffle').hasClass('ui-btn-active');
+            if (shuffle) {
+                $('#shuffle').removeClass('ui-btn-active');
+            } else {
+                $('#shuffle').addClass('ui-btn-active');
+            }
+            socket.emit('shuffle', !shuffle, function (status, data) {
+            });
+        },
+
+        repeat: function () {
+            repeat = $('#repeat').hasClass('ui-btn-active');
+            if (repeat) {
+                $('#repeat').removeClass('ui-btn-active');
+            } else {
+                $('#repeat').addClass('ui-btn-active');
+            }
+            socket.emit('repeat', !repeat, function (status, data) {
             });
         },
 

@@ -1,33 +1,57 @@
 
 .ui-icon-play {
-    background-image: url(/static/img/play.png);
-    background-position: 6px 50%;
+    /*background-image: url(/static/img/play.png);
+    background-position: 6px 50%;*/
+    background-image: url(/static/img/glyphicons-halflings-white.png);
+    background-position: -261px -71px;
 }
 
 .ui-icon-stop {
-    background-image: url(/static/img/stop.png);
-    background-position: 4px 50%;
+    /*background-image: url(/static/img/stop.png);
+    background-position: 4px 50%;*/
+    background-image: url(/static/img/glyphicons-halflings-white.png);
+    background-position: -310px -71px;
 }
 
 .ui-icon-pause {
-    background-image: url(/static/img/pause.png);
-    background-position: 5px 50%;
+    /*background-image: url(/static/img/pause.png);
+    background-position: 5px 50%;*/
+    background-image: url(/static/img/glyphicons-halflings-white.png);
+    background-position: -285px -71px;
 }
 
 .ui-icon-prev {
-    background-image: url(/static/img/first.png);
-    background-position: 4px 50%;
+    /*background-image: url(/static/img/first.png);
+    background-position: 4px 50%;*/
+    background-image: url(/static/img/glyphicons-halflings-white.png);
+    background-position: -190px -71px;
 }
 
 .ui-icon-next {
-    background-image: url(/static/img/last.png);
-    background-position: 4px 50%;
+    /*background-image: url(/static/img/last.png);
+    background-position: 4px 50%;*/
+    background-image: url(/static/img/glyphicons-halflings-white.png);
+    background-position: -382px -71px;
 }
 
-.play_controlls div {
-    width: 238px;
+.ui-icon-repeat {
+    background-image: url(/static/img/glyphicons-halflings-white.png);
+    background-position: -334px -119px;
+}
+
+.ui-icon-shuffle {
+    background-image: url(/static/img/glyphicons-halflings-white.png);
+    background-position: -215px -118px;
+}
+
+.play_controlls div.ui-controlgroup-controls {
+    width: 360px;
     margin: 0 auto;
     display: block !important;
+}
+
+.play_controlls .ui-fullsize .ui-btn-inner {
+    font-size: 12.5px;
 }
 
 .play_controlls .ui-btn-inner {
