@@ -90,7 +90,7 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
 
     def on_play(self, id=None):
         if id:
-            self.client.play(id)
+            self.client.playid(id)
         else:
             self.client.play()
 
