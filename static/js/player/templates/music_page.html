@@ -1,0 +1,39 @@
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="play_controlls btn-group">
+            <button id="prev" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-step-backward"></span>
+            </button>
+            <button id="stop" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-stop"></span>
+            </button>
+            <% if ( state === 'play' ) { %>
+            <button id="play" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-pause"></span>
+            </button>
+            <% } else { %>
+            <button id="play" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-play"></span>
+            </button>
+            <% } %>
+            <button id="next" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-step-forward"></span>
+            </button>
+            <button id="shuffle" type="button" class="btn btn-default <%= is_shuffle ? 'active' : '' %>">
+                <span class="glyphicon glyphicon-random"></span>
+            </button>
+            <button id="repeat" type="button" class="btn btn-default <%= is_repeat ? 'active' : '' %>">
+                <span class="glyphicon glyphicon-retweet"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<ul id="music_list">
+</ul>
+
+<div class="panel panel-default navbar-fixed-bottom">
+    <div id="footer" class="panel-footer">
+        <div id="volume"></div>
+    </div>
+</div>
