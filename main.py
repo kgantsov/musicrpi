@@ -110,6 +110,7 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
 
         if status['state'] == 'play':
             self.client.next()
+            status = self.client.status()
             self.broadcast_event('on_song_changed', status['songid'])
         return True, status
 
@@ -118,6 +119,7 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
 
         if status['state'] == 'play':
             self.client.previous()
+            status = self.client.status()
             self.broadcast_event('on_song_changed', status['songid'])
         return True, status
 
@@ -131,12 +133,14 @@ class PlayerNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
         shuffle = int(shuffle)
         self.client.random(shuffle)
         status = self.client.status()
+        self.broadcast_event('on_shuffle', status['random'])
         return True, status
 
     def on_repeat(self, repeat):
         repeat = int(repeat)
         self.client.repeat(repeat)
         status = self.client.status()
+        self.broadcast_event('on_repeat', status['repeat'])
         return True, status
 
     def on_set_volume(self, volume):
